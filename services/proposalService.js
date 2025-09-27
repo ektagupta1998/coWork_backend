@@ -1,3 +1,4 @@
+import { getPaginatedResults } from "../helpers/pagination.helper.js";
 import Proposal from "../models/proposal.js";
 
 const ProposalService = {
