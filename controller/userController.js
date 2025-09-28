@@ -75,6 +75,25 @@ const userController = {
       return errorResponse(res, error, "Login failed");
     }
   },
+
+  createCustomUser: async (req, res) => {
+    try {
+      const user = await UserService.createCustomUser(req.body);
+      return successResponse(res, user, 'Custom user created successfully');
+    } catch (error) {
+      return errorResponse(res, error, 'Failed to create custom user');
+    }
+  },
+
+  getCustomers: async (req, res) => {
+    try {
+      const customers = await UserService.getCustomers(req.query);
+      return successResponse(res, customers, 'Customers fetched successfully');
+    } catch (error) {
+      return errorResponse(res, error, 'Failed to fetch customers');
+    }
+  }
+
 };
 
 export default userController;

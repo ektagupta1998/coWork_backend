@@ -1,5 +1,5 @@
 import express from "express";
-import leadController from "../controllers/leadController.js";
+import leadController from "../controller/leadController.js";
 import { validate } from "../middlewares/validate.js";
 import { createLeadSchema } from "../validators/leadValidator.js";
 

@@ -3,9 +3,12 @@ import cors from "cors";
 import dotenv from "dotenv";
 import userRoutes from "./routes/userRoutes.js";
 import proposalRoutes from "./routes/proposalRoutes.js";
+import hubRoutes from "./routes/hubRoutes.js";
+import leadRoutes from "./routes/leadRoute.js";
 
 dotenv.config();
 const app = express();
+app.use("/uploads", express.static("uploads"));
 
 const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
 
@@ -22,6 +25,8 @@ app.get("/", (req, res) => res.send("API running"));
 
 app.use("/v1/api/users", userRoutes);
 app.use("/v1/api/proposals", proposalRoutes);
+app.use("/v1/api/hubs", hubRoutes);
+app.use("/v1/api/leads", leadRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

@@ -5,12 +5,14 @@ const userSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
+    password: { type: String },
     type: { type: String, required: true },
     location: { type: String },
-    profile_file: {
-      type: String,
-    },
+    profile_photo: { type: String },
+    company_name: { type: String, required: false },
+    contact_number: { type: Number, required: true },
+    inventory: { type: String, required: false },
+    sd_amount: { type: Number, required: false },
   },
   { timestamps: true }
 );
@@ -28,6 +30,6 @@ userSchema.methods.getDecryptedPassword = function () {
   return bytes.toString(CryptoJS.enc.Utf8);
 };
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.models.User || mongoose.model("User", userSchema);
 
 export default User;

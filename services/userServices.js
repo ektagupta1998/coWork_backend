@@ -46,6 +46,33 @@ const UserService = {
       throw error;
     }
   },
+
+  createCustomUser: async (userData) => {
+    try {
+      const user = new User(userData);
+      return await user.save();
+    } catch (error) {
+      throw error;
+    }
+  },
+
+getCustomers: async (query = {}) => {
+  try {
+    const filters = { ...query, type: "customer" }; 
+
+    const data = await getPaginatedResults(
+      User,
+      ["name", "email", "location"],
+      filters
+    );
+
+    return data;
+  } catch (error) {
+    throw new Error("Error fetching customers: " + error.message);
+  }
+}
+
+
 };
 
 export default UserService;
